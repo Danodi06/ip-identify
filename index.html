@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f5f2">
+    <meta name="description" content="Resolve a URL to its public IPv4 and IPv6 addresses, then build a direct IP-based URL.">
+    <title>Address / Resolve a URL to an IP</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="./" aria-label="Address home">
+        <span class="wordmark-icon" aria-hidden="true">A/</span>
+        <span>ADDRESS<span class="wordmark-period">.</span></span>
+      </a>
+      <span class="topbar-note"><span class="live-dot" aria-hidden="true"></span> PUBLIC DNS LOOKUP</span>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">A SMALL TOOL FOR THE OPEN WEB <span>NO ACCOUNT REQUIRED</span></p>
+        <h1 id="page-title">A name goes in.<br><span>An address comes out.</span></h1>
+        <p class="intro-copy">Look up the public IP addresses behind a URL, then see what that same URL looks like addressed directly to an IP.</p>
+      </section>
+
+      <section class="lookup" aria-label="URL lookup">
+        <form id="lookup-form" novalidate>
+          <label for="url-input">URL OR HOSTNAME</label>
+          <div class="input-row">
+            <span class="input-prefix" aria-hidden="true">↳</span>
+            <input id="url-input" name="url" type="text" inputmode="url" autocomplete="url" spellcheck="false" placeholder="https://example.com/path" aria-describedby="input-hint">
+            <button id="lookup-button" type="submit"><span>Resolve</span><span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="form-meta">
+            <span id="input-hint">A hostname works too, like <button class="example-button" type="button">example.com</button></span>
+            <span class="shortcut">ENTER <span aria-hidden="true">↵</span></span>
+          </div>
+        </form>
+
+        <p id="status" class="status" role="status" aria-live="polite" hidden></p>
+
+        <section id="results" class="results" aria-labelledby="results-title" hidden>
+          <div class="results-heading">
+            <div>
+              <p class="eyebrow">LOOKUP COMPLETE</p>
+              <h2 id="results-title">Resolved addresses</h2>
+            </div>
+            <span id="result-host" class="host-label"></span>
+          </div>
+          <div id="address-list" class="address-list"></div>
+
+          <div class="rewritten-block">
+            <div class="rewritten-heading">
+              <div>
+                <p class="eyebrow">YOUR IP-BASED URL</p>
+                <p class="rewrite-note">The selected address replaces the hostname.</p>
+              </div>
+              <button id="copy-button" class="copy-button" type="button" title="Copy IP-based URL" aria-label="Copy IP-based URL">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="9" height="10" rx="1.5"></rect><path d="M13 7V4.8A1.8 1.8 0 0 0 11.2 3H5.8A1.8 1.8 0 0 0 4 4.8v7.4A1.8 1.8 0 0 0 5.8 14H7"></path></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <input id="rewritten-url" class="rewritten-url" type="text" readonly aria-label="IP-based URL">
+            <p class="security-note"><span aria-hidden="true">!</span> Direct IP URLs may not load over HTTPS: certificates and hosting often expect the original hostname.</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="bottom-note" aria-label="Privacy and lookup details">
+        <div class="note-mark" aria-hidden="true">i</div>
+        <p><strong>Just the hostname is looked up.</strong> The path and query stay in your browser. DNS requests are sent to Google Public DNS; this static tool does not store your input.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>ADDRESS / URL TO IP</span>
+      <span>BUILT FOR CURIOUS CONNECTIONS <span class="footer-star" aria-hidden="true">✳</span></span>
+    </footer>
+  </body>
+</html>
